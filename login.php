@@ -6,16 +6,28 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Online University Managment - Login</title>
-		<link href="css/all.min.css" rel="stylesheet" type="text/css">
-		
-		<!-- Bootstrap CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 		<link
 			href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 			rel="stylesheet">
 			<link href="css/sb-admin-2.min.css" rel="stylesheet">
 			<body class="bg-gradient-primary">
 				<div class="container">
+					<!-- Toast container -->
+					<div style="position: absolute; top: 1rem; right: 1rem;">
+						<!-- Toast -->
+						<div class="toast" id="toastBasic" role="alert" aria-live="assertive" aria-atomic="false" data-delay="5000">
+							<div class="toast-header bg-warning text-white">
+								<i data-feather="alert-circle"></i>
+								<strong class="mr-auto">Error</strong>
+								<button class="ml-2 mb-1 close text-white" type="button" data-dismiss="toast" aria-label="Close">
+								<span aria-hidden="true">×</span>
+								</button>
+							</div>
+							<div class="toast-body">Please enter valid Email or Password</div>
+						</div>
+					</div>
+					
 					<!-- Outer Row -->
 					<div class="row justify-content-center">
 						<div class="col-lg-6">
@@ -30,26 +42,20 @@
 												<div class="text-center">
 													<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
 												</div>
-												<form class="user">
+												<form class="user" action="#" method="POST">
 													<div class="form-group">
-														<input type="email" class="form-control form-control-user"
+														<input type="email" name="useremail" class="form-control form-control-user"
 														id="useremail" aria-describedby="emailHelp"
 														placeholder="Enter Email Address..." required>
 													</div>
 													<div class="form-group">
-														<input type="password" class="form-control form-control-user"
+														<input type="password" name="userpasssword" class="form-control form-control-user"
 														id="userpasssword" placeholder="Password" required>
 													</div>
-													<div class="form-group">
-														<div class="custom-control custom-checkbox small">
-															<input type="checkbox" class="custom-control-input" id="customCheck">
-															<label class="custom-control-label" for="customCheck">Remember
-															Me</label>
-														</div>
-													</div>
-													<a href="loginController.php" class="btn btn-primary btn-user btn-block">
-														Login
-													</a>
+													
+													<button type="submit" name="login_btn" class="btn btn-primary btn-user btn-block">
+													Login
+													</button>
 												</form>
 												<hr>
 												<div class="text-center">
@@ -63,17 +69,38 @@
 						</div>
 					</div>
 				</div>
-				<!-- Bootstrap core JavaScript-->
-				<script src="js/jquery.min.js"></script>
-				<script src="js/bootstrap.bundle.min.js"></script>
-				<!-- Core plugin JavaScript-->
-				<script src="js/jquery.easing.min.js"></script>
-				<!-- Custom scripts for all pages-->
-				<script src="js/sb-admin-2.min.js"></script>
-				<script src="js/bootstrap-validate.js"></script>
+				<?php
+				include("includes/scripts.php")
+				?>
+				<!-- <script src="js/bootstrap-validate.js"></script>
 				<script>
 					bootstrapValidate(`#useremail`,`email:Enter a valid email address`)
 					bootstrapValidate(`#userpasssword`,`min:6 : Enter at least 6 characters`)
+				</script> -->
+				<script>
+				function showToast(){
+				$("#toastBasic").toast("show");
+				}
 				</script>
 			</body>
 		</html>
+		<!-- Login Logic -->
+		<?php
+
+		include('database/dbconfig.php');
+		session_start();
+		//Connection Database
+		if(isset($_POST["login_btn"])){
+		$email_login =  $_POST["useremail"];
+		$password_login = $_POST["userpasssword"];
+		$query = "SELECT * FROM admin WHERE email ='$email_login' AND password = '$password_login'";
+		$query_run = mysqli_query($connection,$query);
+		if(mysqli_fetch_array($query_run)){
+		$_SESSION["userName"] = $email_login;
+		header("Location:index.php");
+				}else{
+		echo "<script>showToast();</script>";
+		}
+		}
+		
+		?>
