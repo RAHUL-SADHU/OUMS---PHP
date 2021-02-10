@@ -4,11 +4,50 @@ include("includes/header.php");
 include("includes/navbar.php");
 ?>
 <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<!-- Add Department Model -->
+<div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="department-name" class="col-form-label">Name:</label>
+						<input type="text" class="form-control" id="department-name" required>
+					</div>
+					<div class="form-group">
+						<label for="code" class="col-form-label">Code:</label>
+						<input type="number" class="form-control" id="code" min="1" required>
+					</div>
+
+                     <div class="form-group">
+						<label for="years" class="col-form-label">Years:</label>
+						<input type="number" class="form-control" id="years" required>
+					</div>
+					<div class="form-group">
+						<label for="description" class="col-form-label">Description:</label>
+						<input type="text" class="form-control" id="description" required>
+					</div>
+
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 	<!-- Page Heading -->
 	<h1 class="h3 mb-2 mt-4 text-gray-800">Department</h1>
-	<button name="add_department" class="btn btn-primary mt-4">
+	<button name="add_department" class="btn btn-primary mt-4" data-toggle="modal" data-target="#addDepartment">
 	Add Department
 	</button>
 	
