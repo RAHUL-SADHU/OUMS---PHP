@@ -84,6 +84,8 @@
 				</script>
 			</body>
 		</html>
+
+		
 		<!-- Login Logic -->
 		<?php
 

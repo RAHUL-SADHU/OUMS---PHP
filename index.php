@@ -220,11 +220,20 @@ include("includes/navbar.php");
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Earnings (Monthly)</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                    Department</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                     <?php 
+                                       $query = "SELECT id FROM department";
+                                       $query_run = mysqli_query($connection,$query);
+                                       $row = mysqli_num_rows($query_run);
+                                       echo "$row";
+
+                                      ?> 
+                                  </div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    <i class="fas fa-building fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>

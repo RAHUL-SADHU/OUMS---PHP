@@ -1,3 +1,9 @@
+<script>
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+</script>
+
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
 	<div class="container my-auto">

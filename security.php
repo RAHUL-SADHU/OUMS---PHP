@@ -12,4 +12,5 @@ if($dbconfig){
 if(!$_SESSION['userName']){
 header('Location:login.php');
 }
+
 ?>

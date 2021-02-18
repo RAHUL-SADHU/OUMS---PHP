@@ -10,7 +10,7 @@
     <hr class="sidebar-divider my-0">
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
         </li>
@@ -22,6 +22,14 @@
               <a class="nav-link" href="department.php">
                 <i class="fas fa-building"></i>
                 <span>Department</span>
+            </a>
+        </li>
+
+
+         <li class="nav-item">
+              <a class="nav-link" href="subject.php">
+                <i class="fa fa-book"></i>
+                <span>Subject</span>
             </a>
         </li>
 
@@ -100,6 +108,8 @@
             <a class="scroll-to-top rounded" href="#page-top">
                 <i class="fas fa-angle-up"></i>
             </a>
+
+
             
             <!-- Logout Modal-->
             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -115,7 +125,10 @@
                         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="login.html">Logout</a>
+                            <form action="logout.php" method="POST">
+                                 <button class="btn btn-primary" type="submit" name="logout_btn">Logout</button> 
+                            </form>
+                           
                         </div>
                     </div>
                 </div>

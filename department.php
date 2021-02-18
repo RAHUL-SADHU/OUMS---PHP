@@ -15,31 +15,30 @@ include("includes/navbar.php");
 				</button>
 			</div>
 			<div class="modal-body">
-				<form>
+				<form action="#" method="POST">
 					<div class="form-group">
 						<label for="department-name" class="col-form-label">Name:</label>
-						<input type="text" class="form-control" id="department-name" required>
+						<input type="text" class="form-control" id="department-name" name="dName" required>
 					</div>
 					<div class="form-group">
 						<label for="code" class="col-form-label">Code:</label>
-						<input type="number" class="form-control" id="code" min="1" required>
+						<input type="number" class="form-control" id="code" min="1" name = "dCode"required>
 					</div>
-
-                     <div class="form-group">
+					<div class="form-group">
 						<label for="years" class="col-form-label">Years:</label>
-						<input type="number" class="form-control" id="years" required>
+						<input type="number" class="form-control" id="years" name= "dYear" required>
 					</div>
 					<div class="form-group">
 						<label for="description" class="col-form-label">Description:</label>
-						<input type="text" class="form-control" id="description" required>
+						<input type="text" class="form-control" id="description" name="description" required>
 					</div>
-
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Submit</button>
-			</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" name="submit" >Submit</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -53,10 +52,14 @@ include("includes/navbar.php");
 	
 	<div class="card shadow mb-4 mt-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+			<h6 class="m-0 font-weight-bold text-primary">Department Information</h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
+				<?php
+				$getDeparment = "SELECT * FROM department";
+				$query_run = mysqli_query($connection,$getDeparment);
+				?>
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<div class="row">
 						<div class="col-sm-12 col-md-6">
@@ -73,55 +76,45 @@ include("includes/navbar.php");
 					<thead>
 						<tr>
 							<th>Name</th>
-							<th>Position</th>
-							<th>Office</th>
-							<th>Age</th>
-							<th>Start date</th>
-							<th>Salary</th>
+							<th>Code</th>
+							<th>Years</th>
+							<th>Description</th>
+							<th>Edit</th>
+							<th>Delete</th>
 						</tr>
 					</thead>
 					
 					<tbody>
+						<?php
+						if(mysqli_num_rows($query_run)>0){
+						while ($row = mysqli_fetch_assoc($query_run)) {
+						?>
 						<tr>
-							<td>Tiger Nixon</td>
-							<td>System Architect</td>
-							<td>Edinburgh</td>
-							<td>61</td>
-							<td>2011/04/25</td>
-							<td>$320,800</td>
+							<td><?php echo $row['name']; ?></td>
+							<td><?php echo $row['code']; ?></td>
+							<td><?php echo $row['year']; ?></td>
+							<td><?php echo $row['description']; ?></td>
+							<td>
+								<form action="edit_department.php" method="POST">
+									<input type="hidden" name="edit_id" value="<?php echo $row['id']?>">
+									<button type="submit" name="edit_btn" class="btn btn-success">EDIT</button>
+								</form>
+								
+							</td>
+							<td>
+								<form action="#" method="POST">
+									<input type="hidden" name="delete_id" value="<?php echo $row['id']?>">
+									<button type="submit" class="btn btn-danger" name="delete">DELETE</button>
+								</form>
+							</td>
 						</tr>
-						<tr>
-							<td>Garrett Winters</td>
-							<td>Accountant</td>
-							<td>Tokyo</td>
-							<td>63</td>
-							<td>2011/07/25</td>
-							<td>$170,750</td>
-						</tr>
-						<tr>
-							<td>Ashton Cox</td>
-							<td>Junior Technical Author</td>
-							<td>San Francisco</td>
-							<td>66</td>
-							<td>2009/01/12</td>
-							<td>$86,000</td>
-						</tr>
-						<tr>
-							<td>Cedric Kelly</td>
-							<td>Senior Javascript Developer</td>
-							<td>Edinburgh</td>
-							<td>22</td>
-							<td>2012/03/29</td>
-							<td>$433,060</td>
-						</tr>
-						<tr>
-							<td>Airi Satou</td>
-							<td>Accountant</td>
-							<td>Tokyo</td>
-							<td>33</td>
-							<td>2008/11/28</td>
-							<td>$162,700</td>
-						</tr>
+						<?php
+						}
+						} else{
+							echo "No Record Found";
+						}
+						?>
+						
 						
 					</tbody>
 				</table>
@@ -133,7 +126,35 @@ include("includes/navbar.php");
 	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 	<!-- Page level custom scripts -->
 	<script src="js/demo/datatables-demo.js"></script>
+	<script>
+				function hideModel(){
+				$('#addDepartment').modal('hide')
+				}
+	</script>
 	<?php
-	include("includes/scripts.php");
-	include("includes/footer.php");
+		include("includes/scripts.php");
+		include("includes/footer.php");
+		if(isset($_POST["submit"])){
+		$dName = $_POST["dName"];
+		$dCode = $_POST["dCode"];
+		$dYear = $_POST["dYear"];
+		$description = $_POST["description"];
+		$query = "INSERT INTO department (name,code,year,description) VALUES ('$dName','$dCode','$dYear','$description')";
+		$query_run = mysqli_query($connection,$query);
+		if($query_run){
+	echo "<script>hideModel();</script>";
+	echo '<meta http-equiv="refresh" content="0">';
+	}
+	}
+	if(isset($_POST["delete"])){
+	$id = $_POST["delete_id"];
+	echo "$id";
+	$query = "DELETE FROM department WHERE id ='$id'";
+	$query_run = mysqli_query($connection,$query);
+	if($query_run){
+	echo '<meta http-equiv="refresh" content="0">';
+	}else{
+	echo "Data note Delete";
+	}
+	}
 	?>
