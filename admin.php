@@ -5,11 +5,11 @@ include("includes/navbar.php");
 ?>
 <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <!-- Add Department Model -->
-<div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Add User</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
@@ -17,21 +17,33 @@ include("includes/navbar.php");
 			<div class="modal-body">
 				<form action="#" method="POST">
 					<div class="form-group">
-						<label for="department-name" class="col-form-label">Name:</label>
-						<input type="text" class="form-control" id="department-name" name="dName" required>
+						<label for="first_name" class="col-form-label">First Name:</label>
+						<input type="text" class="form-control" id="first_name" name="first_name" required>
 					</div>
 					<div class="form-group">
-						<label for="code" class="col-form-label">Code:</label>
-						<input type="number" class="form-control" id="code" min="1" name = "dCode"required>
+						<label for="last_name" class="col-form-label">Last Name:</label>
+						<input type="text" class="form-control" id="last_name" name="last_name" required>
 					</div>
 					<div class="form-group">
-						<label for="years" class="col-form-label">Years:</label>
-						<input type="number" class="form-control" id="years" name= "dYear" required>
+						
+						<label for="role" class="col-form-label">Role:</label>
+						<select class="form-control" name="role">
+							<option>Admin</option>
+							<option>Teacher</option>
+						</select>
 					</div>
 					<div class="form-group">
-						<label for="description" class="col-form-label">Description:</label>
-						<input type="text" class="form-control" id="description" name="description" required>
+						
+						<label for="useremail" class="col-form-label">Email:</label>
+						<input type="email" name="useremail" class="form-control form-control-user"
+						id="useremail" aria-describedby="emailHelp" required>
 					</div>
+					<div class="form-group">
+						<label for="userpasssword" class="col-form-label">Password:</label>
+						<input type="password" name="userpasssword" class="form-control form-control-user"
+						id="userpasssword"required>
+					</div>
+					
 					
 				</div>
 				<div class="modal-footer">
@@ -45,14 +57,14 @@ include("includes/navbar.php");
 <!-- Begin Page Content -->
 <div class="container-fluid">
 	<!-- Page Heading -->
-	<h1 class="h3 mb-2 mt-4 text-gray-800">Department</h1>
-	<button name="add_department" class="btn btn-primary mt-4" data-toggle="modal" data-target="#addDepartment">
-	Add Department
+	<h1 class="h3 mb-2 mt-4 text-gray-800">Users</h1>
+	<button name="add_department" class="btn btn-primary mt-4" data-toggle="modal" data-target="#addUser">
+	Add User
 	</button>
 	
 	<div class="card shadow mb-4 mt-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Department Information</h6>
+			<h6 class="m-0 font-weight-bold text-primary">Users Information</h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -79,18 +91,26 @@ include("includes/navbar.php");
 					?>
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Code</th>
-							<th>Years</th>
-							<th>Description</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Role</th>
 							<th>Edit</th>
 							<th>Delete</th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						
 						<tr>
+							<th>Hardik</th>
+							<th>Acharya</th>
+							<th>hardik@gmail.com</th>
+							<th>Admin</th>
+							<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
+							<th><button type="submit" class="btn btn-danger" name="delete">DELETE</button></th>
+						</tr>
+						
+						<!-- 	<tr>
 							<td><?php echo $row['name']; ?></td>
 							<td><?php echo $row['code']; ?></td>
 							<td><?php echo $row['year']; ?></td>
@@ -109,14 +129,14 @@ include("includes/navbar.php");
 								</form>
 							</td>
 						</tr>
-						
+						-->
 						
 						
 					</tbody>
 					<?php
 						}
 						} else{
-						 echo "<p class='text-center font-weight-bold my-5'>No Record Found.</p>";
+						echo "<p class='text-center font-weight-bold my-5'>No Record Found.</p>";
 						}
 					?>
 				</table>
