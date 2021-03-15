@@ -79,10 +79,6 @@ include("includes/navbar.php");
 							</div>
 					</div> -->
 				</div>
-				<?php
-					if(mysqli_num_rows($query_run)>0){
-					while ($row = mysqli_fetch_assoc($query_run)) {
-				?>
 				<thead>
 					<tr>
 						<th>Student Id</th>
@@ -90,11 +86,55 @@ include("includes/navbar.php");
 						<th>Is Present ?</th>
 					</tr>
 				</thead>
+				<?php
+					if(mysqli_num_rows($query_run)>0){
+					while ($row = mysqli_fetch_assoc($query_run)) {
+				?>
 				
 				<tbody>
 					<tr>
-						<th>12120</th>
-						<th>Maya Acharya</th>
+						<th>12201</th>
+						<th>Mario Speedwagon</th>
+						<th><div class="form-check form-switch">
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+						</div></th>
+					</tr>
+
+					<tr>
+						<th>12202</th>
+						<th>Petey Cruiser</th>
+						<th><div class="form-check form-switch">
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+						</div></th>
+					</tr>
+
+					<tr>
+						<th>12203</th>
+						<th>Anna Sthesia</th>
+						<th><div class="form-check form-switch">
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+						</div></th>
+					</tr>
+
+					<tr>
+						<th>12204</th>
+						<th>Paul Molive</th>
+						<th><div class="form-check form-switch">
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+						</div></th>
+					</tr>
+
+					<tr>
+						<th>12205</th>
+						<th>Anna Mull</th>
+						<th><div class="form-check form-switch">
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+						</div></th>
+					</tr>
+
+					<tr>
+						<th>12206</th>
+						<th>Gail Forcewind</th>
 						<th><div class="form-check form-switch">
 							<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
 						</div></th>

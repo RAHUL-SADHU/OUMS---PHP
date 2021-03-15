@@ -16,11 +16,11 @@ include("includes/navbar.php");
 		<div class="card-body">
 			<div class="table-responsive">
 				<?php
-				$getDeparment = "SELECT * FROM department";
+				$getDeparment = "SELECT * FROM student";
 				$query_run = mysqli_query($connection,$getDeparment);
 				?>
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-sm-12 col-md-6">
 							<div class="dataTables_length" id="dataTable_length">
 								<label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
@@ -31,12 +31,8 @@ include("includes/navbar.php");
 								<label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label>
 							</div>
 						</div>
-					</div>
-					<?php
-						if(mysqli_num_rows($query_run)>0){
-						while ($row = mysqli_fetch_assoc($query_run)) {
-					?>
-					<thead>
+					</div> -->
+						<thead>
 						
 						<tr>
 							<th>Photo</th>
@@ -47,17 +43,22 @@ include("includes/navbar.php");
 							<th>Delete</th>
 						</tr>
 					</thead>
+					<?php
+						if(mysqli_num_rows($query_run)>0){
+						while ($row = mysqli_fetch_assoc($query_run)) {
+					?>
+				
 					
 					<tbody>
 						<tr>
-							<th>  <img class="img-thumbnail rounded-circle"
-							src="img/undraw_profile.svg" width="80" height="80"></th>
-							<th>Maya Acharya</th>
-							<th>420</th>
-							<th><button type="submit" class="btn btn-info" name="delete">View</button></th>
-							<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
-							<th><button type="submit" class="btn btn-danger" name="delete">DELETE</button></th>
-						</tr>
+							<td> <?php echo '<img class="rounded-circle"
+							src="upload/'.$row['profile_image'].'" width="80px" height="80px" alt ="Image">'?></td>
+							<td><?php echo $row['first_name']; ?></td>
+							<td><?php echo $row['student_id']; ?></th>
+							<td><button type="submit" class="btn btn-info" name="delete">View</button></td>
+							<td><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></td>
+							<td><button type="submit" class="btn btn-danger" name="delete">DELETE</button></td>
+						
 						
 						<!-- <tr>
 							<td><?php echo $row['name']; ?></td>

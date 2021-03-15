@@ -61,7 +61,7 @@ include("includes/navbar.php");
 				$query_run = mysqli_query($connection,$getDeparment);
 				?>
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-sm-12 col-md-6">
 							<div class="dataTables_length" id="dataTable_length">
 								<label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
@@ -72,11 +72,7 @@ include("includes/navbar.php");
 								<label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label>
 							</div>
 						</div>
-					</div>
-					<?php
-						if(mysqli_num_rows($query_run)>0){
-						while ($row = mysqli_fetch_assoc($query_run)) {
-					?>
+					</div> -->
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -87,6 +83,11 @@ include("includes/navbar.php");
 							<th>Delete</th>
 						</tr>
 					</thead>
+					
+					<?php
+						if(mysqli_num_rows($query_run)>0){
+						while ($row = mysqli_fetch_assoc($query_run)) {
+					?>
 					
 					<tbody>
 						

@@ -9,7 +9,7 @@ include("includes/navbar.php");
 <div class="container-fluid">
 	<div class="card shadow mb-4 mt-4">
 		<div class="card-header py-3">
-			<h5 class="m-0 font-weight-bold text-primary">Student Admission</h5>
+			<h5 class="m-0 font-weight-bold text-primary">Student Attendence</h5>
 		</div>
 		<div class="card-body">
 			<div class="form-row">
@@ -79,10 +79,6 @@ include("includes/navbar.php");
 							</div>
 					</div> -->
 				</div>
-				<?php
-					if(mysqli_num_rows($query_run)>0){
-					while ($row = mysqli_fetch_assoc($query_run)) {
-				?>
 				<thead>
 					<tr>
 						<th>Student Id</th>
@@ -91,11 +87,52 @@ include("includes/navbar.php");
 						<th>Edit</th>
 					</tr>
 				</thead>
+				<?php
+					if(mysqli_num_rows($query_run)>0){
+					while ($row = mysqli_fetch_assoc($query_run)) {
+				?>
+				
 				
 				<tbody>
 					<tr>
-						<th>12120</th>
-						<th>Maya Acharya</th>
+						<th>12201</th>
+						<th>Mario Speedwagon</th>
+						<th>Yes</th>
+						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
+					</tr>
+					<tr>
+						<th>12202</th>
+						<th>Petey Cruiser</th>
+						<th>Yes</th>
+						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
+					</tr>
+					<tr>
+						<th>12203</th>
+						<th>Anna Sthesia</th>
+						<th>Yes</th>
+						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
+					</tr>
+					<tr>
+						<th>12204</th>
+						<th>Paul Molive</th>
+						<th>Yes</th>
+						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
+					</tr>
+					<tr>
+						<th>12205</th>
+						<th>Anna Mull</th>
+						<th>Yes</th>
+						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
+					</tr>
+					<tr>
+						<th>12206</th>
+						<th>Gail Forcewind</th>
+						<th>Yes</th>
+						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
+					</tr>
+					<tr>
+						<th>12208</th>
+						<th>Paige Turner</th>
 						<th>Yes</th>
 						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
 					</tr>

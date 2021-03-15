@@ -33,7 +33,7 @@
         </li>
         <!-- Nav Item - Student -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="subject.php" data-toggle="collapse" data-target="#collapseStudent"aria-expanded="true" aria-controls="collapseStudent">
+            <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseStudent"aria-expanded="true" aria-controls="collapseStudent">
                 <i class="fas fa-users"></i>
                 <span>Stundent</span>
             </a>
@@ -48,7 +48,7 @@
         </li>
         <!-- Nav Item - Attendance -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="subject.php" data-toggle="collapse" data-target="#collapseAttendance"aria-expanded="true" aria-controls="collapseAttendance">
+            <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseAttendance"aria-expanded="true" aria-controls="collapseAttendance">
                 <i class="fas fa-pencil-alt"></i>
                 <span>Attendance</span>
             </a>
@@ -61,31 +61,56 @@
         </li>
         <!-- Nav Item - Exams-->
         <li class="nav-item ">
-            <a class="nav-link collapsed" href="subject.php" data-toggle="collapse" data-target="#collapseExams"aria-expanded="true" aria-controls="collapseExams">
+            <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseExams"aria-expanded="true" aria-controls="collapseExams">
                 <i class="fas fa-edit"></i>
                 <span>Exams</span>
             </a>
-             <div id="collapseExams" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseExams" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="exam.php">New</a>
-                    <a class="collapse-item" href="attendance_list.php">List</a>
+                    <a class="collapse-item" href="exam_list.php">List</a>
                 </div>
             </div>
         </li>
         <!-- Nav Item - Result -->
         <li class="nav-item">
-            <a class="nav-link" href="subject.php">
+            <a class="nav-link" href="result.php">
                 <i class="fas fa-clipboard-list"></i>
                 <span>Result</span>
             </a>
         </li>
         <!-- Nav Item - Fees -->
-        <li class="nav-item">
-            <a class="nav-link" href="subject.php">
+        <li class="nav-item ">
+            <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseFees"aria-expanded="true" aria-controls="collapseFees">
                 <i class="fas fa-file-invoice"></i>
                 <span>Fees</span>
             </a>
+            <div id="collapseFees" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="fees_list.php">Fee List</a>
+                    <a class="collapse-item" href="fee_collection.php">Fee Collection</a>
+                    <a class="collapse-item" href="fee_receipt.php">Fee Receipt</a>
+                </div>
+            </div>
         </li>
+
+         <!-- Nav Item - Library -->
+        <li class="nav-item ">
+            <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseLibrary"aria-expanded="true" aria-controls="collapseLibrary">
+                <i class="fas fa-book-open"></i>
+                <span>Library</span>
+            </a>
+            <div id="collapseLibrary" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="add_book.php">Add Book</a>
+                    <a class="collapse-item" href="book_list.php">Book List</a>
+                     <hr>
+                    <a class="collapse-item" href="borrow_book.php">Borrow Book</a>
+                     <a class="collapse-item" href="borrow_book_list.php">Borrowd Book List</a>
+                </div>
+            </div>
+        </li>
+
         <!-- Nav Item - Users -->
         <li class="nav-item">
             <a class="nav-link" href="admin.php">
@@ -93,6 +118,15 @@
                 <span>Users</span>
             </a>
         </li>
+
+         <!-- Nav Item - Users -->
+        <li class="nav-item">
+            <a class="nav-link" href="institute.php">
+               <i class="fas fa-university"></i>
+                <span>Institute</span>
+            </a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
         <!-- Sidebar Toggler (Sidebar) -->

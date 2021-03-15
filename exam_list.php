@@ -82,63 +82,69 @@ include("includes/navbar.php");
 								</div>
 						</div> -->
 					</div>
-						<thead>
+					<thead>
 						<tr>
 							<th>Student Id</th>
 							<th>Name</th>
 							<th>Written</th>
 							<th>Presentation</th>
 							<th>Lab/Practical</th>
+							<th>Edit</th>
 						</tr>
 					</thead>
 					<?php
 						if(mysqli_num_rows($query_run)>0){
 						while ($row = mysqli_fetch_assoc($query_run)) {
 					?>
-				
 					
 					<tbody>
 						<tr>
 							<th>12201</th>
-							<th>Mario Speedwagon</th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
+							<th>>Mario Speedwagon</th>
+							<th><input type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="52"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="55"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="45"></th>
+							<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
 						</tr>
 						<tr>
 							<th>12202</th>
 							<th>Petey Cruiser</th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
+							<th><input type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="65"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="75"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="85"></th>
+							<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
 						</tr>
 						<tr>
 							<th>12203</th>
 							<th>Anna Sthesia</th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
+							<th><input type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="95"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="85"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="88"></th>
+							<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
 						</tr>
 						<tr>
 							<th>12204</th>
 							<th>Paul Molive</th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
+							<th><input type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="75"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="86"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="88"></th>
+							<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
 						</tr>
 						<tr>
 							<th>12205</th>
 							<th>Anna Mull</th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
+							<th><input type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="63"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="32"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="58"></th>
+							<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
 						</tr>
 						<tr>
 							<th>12206</th>
 							<th>Gail Forcewind</th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
-							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" ></th>
+							<th><input type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="55"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="87"></th>
+							<th><input  type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" class="form-control" id="exampleFormControlInput1" disabled value="32"></th>
+							<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
 						</tr>
 						
 						<!-- 	<tr>

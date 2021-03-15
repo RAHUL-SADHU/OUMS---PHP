@@ -25,7 +25,6 @@ include("includes/navbar.php");
 						<input type="text" class="form-control" id="last_name" name="last_name" required>
 					</div>
 					<div class="form-group">
-						
 						<label for="role" class="col-form-label">Role:</label>
 						<select class="form-control" name="role">
 							<option>Admin</option>
@@ -34,14 +33,14 @@ include("includes/navbar.php");
 					</div>
 					<div class="form-group">
 						
-						<label for="useremail" class="col-form-label">Email:</label>
-						<input type="email" name="useremail" class="form-control form-control-user"
-						id="useremail" aria-describedby="emailHelp" required>
+						<label for="email" class="col-form-label">Email:</label>
+						<input type="email" name="email" class="form-control form-control-user"
+						id="email" aria-describedby="emailHelp" required>
 					</div>
 					<div class="form-group">
-						<label for="userpasssword" class="col-form-label">Password:</label>
-						<input type="password" name="userpasssword" class="form-control form-control-user"
-						id="userpasssword"required>
+						<label for="password" class="col-form-label">Password:</label>
+						<input type="password" name="password" class="form-control form-control-user"
+						id="passsword"required>
 					</div>
 					
 					
@@ -69,26 +68,22 @@ include("includes/navbar.php");
 		<div class="card-body">
 			<div class="table-responsive">
 				<?php
-				$getDeparment = "SELECT * FROM department";
-				$query_run = mysqli_query($connection,$getDeparment);
+				$getadmin = "SELECT * FROM admin";
+				$query_run = mysqli_query($connection,$getadmin);
 				?>
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-					<div class="row">
-						<div class="col-sm-12 col-md-6">
-							<div class="dataTables_length" id="dataTable_length">
-								<label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
+					<!-- 	<div class="row">
+							<div class="col-sm-12 col-md-6">
+											<div class="dataTables_length" id="dataTable_length">
+															<label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
+											</div>
 							</div>
-						</div>
-						<div class="col-sm-12 col-md-6">
-							<div id="dataTable_filter" class="dataTables_filter">
-								<label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label>
+							<div class="col-sm-12 col-md-6">
+											<div id="dataTable_filter" class="dataTables_filter">
+															<label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label>
+											</div>
 							</div>
-						</div>
-					</div>
-					<?php
-						if(mysqli_num_rows($query_run)>0){
-						while ($row = mysqli_fetch_assoc($query_run)) {
-					?>
+					</div> -->
 					<thead>
 						<tr>
 							<th>First Name</th>
@@ -99,28 +94,23 @@ include("includes/navbar.php");
 							<th>Delete</th>
 						</tr>
 					</thead>
+					<?php
+						if(mysqli_num_rows($query_run)>0){
+						while ($row = mysqli_fetch_assoc($query_run)) {
+					?>
+					
 					
 					<tbody>
 						<tr>
-							<th>Hardik</th>
-							<th>Acharya</th>
-							<th>hardik@gmail.com</th>
-							<th>Admin</th>
-							<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
-							<th><button type="submit" class="btn btn-danger" name="delete">DELETE</button></th>
-						</tr>
-						
-						<!-- 	<tr>
-							<td><?php echo $row['name']; ?></td>
-							<td><?php echo $row['code']; ?></td>
-							<td><?php echo $row['year']; ?></td>
-							<td><?php echo $row['description']; ?></td>
+							<td><?php echo $row['first_name']; ?></td>
+							<td><?php echo $row['last_name']; ?></td>
+							<td><?php echo $row['email']; ?></td>
+							<td><?php echo $row['role']; ?></td>
 							<td>
-								<form action="edit_department.php" method="POST">
+								<form action="edit_admin.php" method="POST">
 									<input type="hidden" name="edit_id" value="<?php echo $row['id']?>">
 									<button type="submit" name="edit_btn" class="btn btn-success">EDIT</button>
 								</form>
-								
 							</td>
 							<td>
 								<form action="#" method="POST">
@@ -129,9 +119,6 @@ include("includes/navbar.php");
 								</form>
 							</td>
 						</tr>
-						-->
-						
-						
 					</tbody>
 					<?php
 						}
@@ -157,11 +144,12 @@ include("includes/navbar.php");
 		include("includes/scripts.php");
 		include("includes/footer.php");
 		if(isset($_POST["submit"])){
-		$dName = $_POST["dName"];
-		$dCode = $_POST["dCode"];
-		$dYear = $_POST["dYear"];
-		$description = $_POST["description"];
-		$query = "INSERT INTO department (name,code,year,description) VALUES ('$dName','$dCode','$dYear','$description')";
+		$fName = $_POST["first_name"];
+		$lName = $_POST["last_name"];
+		$role = $_POST["role"];
+		$password = $_POST["password"];
+		$email = $_POST["email"];
+		$query = "INSERT INTO admin (first_name,last_name,email,password,role) VALUES ('$fName','$lName','$email','$password','$role')";
 		$query_run = mysqli_query($connection,$query);
 		if($query_run){
 	echo "<script>hideModel();</script>";
@@ -170,7 +158,7 @@ include("includes/navbar.php");
 	}
 	if(isset($_POST["delete"])){
 	$id = $_POST["delete_id"];
-	$query = "DELETE FROM department WHERE id ='$id'";
+	$query = "DELETE FROM admin WHERE id ='$id'";
 	$query_run = mysqli_query($connection,$query);
 	if($query_run){
 	echo '<meta http-equiv="refresh" content="0">';
