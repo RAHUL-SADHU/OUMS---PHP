@@ -63,7 +63,7 @@ include("includes/navbar.php");
             <!-- Content Row -->
             <div class="row">
                 <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4">
+                <div class="col-xl-4 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
@@ -86,17 +86,22 @@ include("includes/navbar.php");
                         </div>
                     </div>
                 </div>
-
-
                 <!-- Subjects Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4">
+                <div class="col-xl-4 col-md-6 mb-4">
                     <div class="card border-left-success shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Subjects</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?php
+                                        $query = "SELECT subject_id FROM subject";
+                                        $query_run = mysqli_query($connection,$query);
+                                        $row = mysqli_num_rows($query_run);
+                                        echo "$row";
+                                        ?>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fa fa-book fa-2x text-gray-300"></i>
@@ -105,18 +110,24 @@ include("includes/navbar.php");
                         </div>
                     </div>
                 </div>
-
                 <!-- Admitted Students Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4">
+                <div class="col-xl-4 col-md-6 mb-4">
                     <div class="card border-left-info shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Admitted Students 
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Admitted Students
                                     </div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">10</div>
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                <?php
+                                                $query = "SELECT id FROM student";
+                                                $query_run = mysqli_query($connection,$query);
+                                                $row = mysqli_num_rows($query_run);
+                                                echo "$row";
+                                                ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -127,10 +138,8 @@ include("includes/navbar.php");
                         </div>
                     </div>
                 </div>
-
-
                 <!-- Registerd Student Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4">
+                <!-- <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-warning shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
@@ -146,15 +155,15 @@ include("includes/navbar.php");
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- Content Row -->
             
-          
+            
+        </div>
+        <!-- /.container-fluid -->
     </div>
-    <!-- /.container-fluid -->
-</div>
-<!-- End of Main Content -->
-<?php
-include("includes/scripts.php");
-include("includes/footer.php");
-?>
+    <!-- End of Main Content -->
+    <?php
+    include("includes/scripts.php");
+    include("includes/footer.php");
+    ?>

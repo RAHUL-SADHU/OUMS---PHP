@@ -21,24 +21,24 @@ include("includes/navbar.php");
 				?>
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<!-- <div class="row">
-						<div class="col-sm-12 col-md-6">
-							<div class="dataTables_length" id="dataTable_length">
-								<label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
-							</div>
-						</div>
-						<div class="col-sm-12 col-md-6">
-							<div id="dataTable_filter" class="dataTables_filter">
-								<label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label>
-							</div>
-						</div>
+								<div class="col-sm-12 col-md-6">
+											<div class="dataTables_length" id="dataTable_length">
+														<label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
+											</div>
+								</div>
+								<div class="col-sm-12 col-md-6">
+											<div id="dataTable_filter" class="dataTables_filter">
+														<label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label>
+											</div>
+								</div>
 					</div> -->
-						<thead>
+					<thead>
 						
 						<tr>
 							<th>Photo</th>
 							<th>Name</th>
 							<th>ID No</th>
-							<th>View</th>
+							<!-- 	<th>View</th> -->
 							<th>Edit</th>
 							<th>Delete</th>
 						</tr>
@@ -47,17 +47,27 @@ include("includes/navbar.php");
 						if(mysqli_num_rows($query_run)>0){
 						while ($row = mysqli_fetch_assoc($query_run)) {
 					?>
-				
+					
 					
 					<tbody>
 						<tr>
 							<td> <?php echo '<img class="rounded-circle"
 							src="upload/'.$row['profile_image'].'" width="80px" height="80px" alt ="Image">'?></td>
 							<td><?php echo $row['first_name']; ?></td>
-							<td><?php echo $row['student_id']; ?></th>
-							<td><button type="submit" class="btn btn-info" name="delete">View</button></td>
-							<td><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></td>
-							<td><button type="submit" class="btn btn-danger" name="delete">DELETE</button></td>
+						<td><?php echo $row['student_id']; ?></th>
+						<!-- <td><button type="submit" class="btn btn-info" name="delete">View</button></td> -->
+						<td>
+							<form action="edit_student.php" method="POST">
+								<input type="hidden" name="edit_id" value="<?php echo $row['id']?>">
+								<button type="submit" name="edit_btn" class="btn btn-success">EDIT</button>
+							</form>
+						</td>
+						<td>
+							<form action="#" method="POST">
+									<input type="hidden" name="delete_id" value="<?php echo $row['id']?>">
+								<button type="submit" class="btn btn-danger" name="delete">DELETE</button>
+							</form>
+						</td>
 						
 						
 						<!-- <tr>
@@ -120,7 +130,7 @@ include("includes/navbar.php");
 	}
 	if(isset($_POST["delete"])){
 	$id = $_POST["delete_id"];
-	$query = "DELETE FROM department WHERE id ='$id'";
+	$query = "DELETE FROM student WHERE id ='$id'";
 	$query_run = mysqli_query($connection,$query);
 	if($query_run){
 	echo '<meta http-equiv="refresh" content="0">';
