@@ -16,6 +16,11 @@
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider">
+
+    <?php  
+        if($_SESSION["role"] == "Admin"){
+
+    ?>
         
         <!-- Nav Item - Department -->
         <li class="nav-item">
@@ -46,6 +51,12 @@
                 </div>
             </div>
         </li>
+
+      <?php 
+          }
+        ?>
+
+
         <!-- Nav Item - Attendance -->
         <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseAttendance"aria-expanded="true" aria-controls="collapseAttendance">
@@ -79,6 +90,10 @@
                 <span>Result</span>
             </a>
         </li>
+
+         <?php  
+        if($_SESSION["role"] == "Admin"){
+         ?>
         <!-- Nav Item - Fees -->
         <li class="nav-item ">
             <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseFees"aria-expanded="true" aria-controls="collapseFees">
@@ -126,6 +141,9 @@
                 <span>Institute</span>
             </a>
         </li>
+      <?php 
+          }
+        ?>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
