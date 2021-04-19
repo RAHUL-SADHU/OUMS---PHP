@@ -42,7 +42,7 @@ include("includes/navbar.php");
 					$getDeparment = "SELECT * FROM department";
 					$query_run = mysqli_query($connection,$getDeparment);
 					?>
-					<label>Department:</label>
+					<label class="col-form-label">Department:</label>
 					<select class="form-control" name="department_id">
 						<?php
 						if(mysqli_num_rows($query_run)>0){

@@ -48,11 +48,11 @@ include("includes/navbar.php");
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6"> <!-- Date input -->
-				<label class="control-label" for="date">Date:</label>
+				<label class="col-form-label" for="date">Date:</label>
 				<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
 			</div>
 			<div class="form-group col-md-6 mx-auto">
-				<label for="student" class="control-label">Student:</label>
+				<label for="student" class="col-form-label">Student:</label>
 				<select class="form-control" name="student">
 					<option>Mario Speedwagon</option>
 					<option>Petey Cruiser</option>
@@ -62,14 +62,14 @@ include("includes/navbar.php");
 		<hr>
 		<div class="form-row">
 			<div class="form-group col-md-4">
-				<label for="fees_list" class="control-label">Fee Name:</label>
+				<label for="fees_list" class="col-form-label">Fee Name:</label>
 				<select class="form-control" name="fees_list">
 					<option>Fees BCA</option>
 					<option>Fees MCA</option>
 				</select>
 			</div>
 			<div class="form-group col-md-4">
-				<label for="fees_amount" class="control-label">Fees Amount:</label>
+				<label for="fees_amount"class="col-form-label">Fees Amount:</label>
 				<input type="number" class="form-control" id="fees_amount" name="fees_amount"
 				value="<?php echo $row['name']?>"
 				required>

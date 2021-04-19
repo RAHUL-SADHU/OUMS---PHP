@@ -78,7 +78,7 @@ include("includes/navbar.php");
 						</select>
 					</div>
 					<div class="form-group  col-md-4 mx-auto my-auto">
-						<label>Gender :</label>
+						<label class="col-form-label">Gender :</label>
 						<div class="radio">
 							<label class="radio-inline">
 								<input type="radio"  name="gender" id="male" value="male" checked>Male
@@ -92,7 +92,7 @@ include("includes/navbar.php");
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-4 mx-auto">
-						<label for="religion" class="control-label">Religion:</label>
+						<label for="religion"  class="col-form-label">Religion:</label>
 						<select class="form-control" name="religion">
 							<option>Hindu</option>
 							<option>Islam</option>
@@ -102,52 +102,52 @@ include("includes/navbar.php");
 						</select>
 					</div>
 					<div class="form-group col-md-4">
-						<label for="nationality" class="control-label">Nationality:</label>
+						<label for="nationality" class="col-form-label">Nationality:</label>
 						<input type="text" class="form-control" id="nationality" name="nationality" value ="Indian" required>
 					</div>
 					<div class="form-group col-md-4"> <!-- Date input -->
-					<label class="control-label" for="date">Date:</label>
+					<label  class="col-form-label" for="date">Date:</label>
 					<input class="form-control" id="date" name="date"  type="date" required/>
 				</div>
 				
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="photograph" class="control-label">Photograph:</label>
+					<label for="photograph" class="col-form-label">Photograph:</label>
 					<input class="form-control" type="file" id="photograph" name="profile_photo" required>
 				</div>
 				<div class="form-group col-md-4">
-					<label class="control-label" for="phone">Mobile Number:</label>
+					<label  class="col-form-label" for="phone">Mobile Number:</label>
 					<input class="form-control" type="tel" id="phone" name="phone" required>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="father_name"  class="control-label">Father Name:</label>
+					<label for="father_name"   class="col-form-label">Father Name:</label>
 					<input type="text" class="form-control" id="father_name" name="father_name" required>
 				</div>
 				<div class="form-group col-md-6">
-					<label class="control-label" for="father_mo">Father Mobile No:</label>
+					<label  class="col-form-label" for="father_mo">Father Mobile No:</label>
 					<input class="form-control" type="tel" id="father_mo" name="father_mo" required>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="mother_name"  class="control-label">Mother Name:</label>
+					<label for="mother_name"   class="col-form-label">Mother Name:</label>
 					<input type="text" class="form-control" id="mother_name" name="mother_name" required>
 				</div>
 				<div class="form-group col-md-6">
-					<label class="control-label" for="mother_mo">Mother Mobile No:</label>
+					<label class="col-form-label" for="mother_mo">Mother Mobile No:</label>
 					<input class="form-control" type="tel" id="mother_mo" name="mother_mo" required>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="present_address"  class="control-label">Present Address:</label>
+					<label for="present_address"  class="col-form-label">Present Address:</label>
 					<textarea type="text" class="form-control" id="present_address" name="present_address" row="5" required></textarea>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="parmanent_address"  class="control-label">Parmanent Address:</label>
+					<label for="parmanent_address"  class="col-form-label">Parmanent Address:</label>
 					<textarea type="text" class="form-control" id="parmanent_address" name="parmanent_address" row="5" required></textarea>
 				</div>
 			</div>

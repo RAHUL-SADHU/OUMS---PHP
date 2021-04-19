@@ -3,7 +3,9 @@ include("security.php");
 include("includes/header.php");
 include("includes/navbar.php");
 ?>
-<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+
 <!-- Add Department Model -->
 <div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -60,7 +62,13 @@ include("includes/navbar.php");
 				$getDeparment = "SELECT * FROM department";
 				$query_run = mysqli_query($connection,$getDeparment);
 				?>
-				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<table 
+				class="table table-bordered" 
+				id="dataTable" 
+				width="100%" 
+				cellspacing="0"
+                data-show-print="true"
+				>
 					<!-- <div class="row">
 						<div class="col-sm-12 col-md-6">
 							<div class="dataTables_length" id="dataTable_length">
@@ -75,12 +83,12 @@ include("includes/navbar.php");
 					</div> -->
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Code</th>
-							<th>Years</th>
-							<th>Description</th>
-							<th>Edit</th>
-							<th>Delete</th>
+							<th data-field="name">Name</th>
+							<th data-field="code">Code</th>
+							<th data-field="years">Years</th>
+							<th data-field="description">Description</th>
+							<th data-field="edit" data-print-ignore=true >Edit</th>
+							<th data-field="delete" data-print-ignore=true >Delete</th>
 						</tr>
 					</thead>
 					
@@ -124,18 +132,31 @@ include("includes/navbar.php");
 			</div>
 		</div>
 	</div>
-	<!-- Page level plugins -->
-	<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-	<!-- Page level custom scripts -->
-	<script src="js/demo/datatables-demo.js"></script>
+
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/print/bootstrap-table-print.min.js"></script>
+<!-- 
+	<script>
+  var $table = $('#dataTable')
+
+  $(function() {
+    var data = [
+     
+    ]
+    $table.bootstrapTable({data: data})
+  })
+</script> -->
+
 	<script>
 				function hideModel(){
 				$('#addDepartment').modal('hide')
 				}
 	</script>
 	<?php
-		include("includes/scripts.php");
+		//include("includes/scripts.php");
 		include("includes/footer.php");
 		if(isset($_POST["submit"])){
 		$dName = $_POST["dName"];
@@ -160,3 +181,4 @@ include("includes/navbar.php");
 	}
 	}
 	?>
+	

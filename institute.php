@@ -36,8 +36,8 @@ include("includes/navbar.php");
 					<input class="form-control" type="tel" id="phone" name="phone" value="<?php echo $row['phone_number']?>" required>
 				</div>
 				<div class="form-group col-md-6  mx-auto">
-					<label for="address"  class="control-label">Address:</label>
-					<textarea type="text" class="form-control" id="address" name="address" row="5"required><?php echo $row['address']?></textarea>
+					<label for="address"   class="col-form-label">Address:</label>
+					<textarea type="text" class="form-control" id="address" name="address" row="8" required><?php echo $row['address']?></textarea>
 				</div>
 				<div class="form-group col-md-4  mx-auto">
 					<button type="submit" class="col mx-auto my-2 btn btn-primary" name="submit">Submit</button>
