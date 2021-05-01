@@ -45,21 +45,17 @@ include("includes/navbar.php");
 	<?php
 		include("includes/scripts.php");
 		include("includes/footer.php");
-		/*if(isset($_POST["submit"])){
-	$book_no = $_POST["code_no"];
-	$issue_date = $_POST["issue_date"];
-	$return_date = $_POST["return_date"];
-	$status = $_POST["status"];
-
-	$getbook = "SELECT * FROM (( borrow_book INNER JOIN book ON borrow_book.book_id = book.book_id) INNER JOIN student ON borrow_book.student_id = student.id) WHERE book_no = '$book_no' AND issue_date = 
-	'$issue_date' AND return_date = '$return_date' AND status = '$status'";
-		$query_run = mysqli_query($connection,$getbook);
-		if(mysqli_num_rows($query_run)>0){
-				while ($row = mysqli_fetch_assoc($query_run)) {
-	             echo $row["first_name"];
-	           }
-		}
-		}*/
+		if(isset($_POST["delete"])){
+	$id = $_POST["delete_id"];
+	echo "$id";
+	$query = "DELETE FROM borrow_book WHERE id ='$id'";
+	$query_run = mysqli_query($connection,$query);
+	if($query_run){
+	echo '<meta http-equiv="refresh" content="0">';
+	}else{
+	echo "Data note Delete";
+	}
+	}
 	?>
 
 	<script type="text/javascript">
@@ -71,7 +67,6 @@ $('form').on('submit', function(event) {
 	});
 
 	function loadTable() {
-	alert("submit");	
 	var book_no= document.getElementById("code_no").value;
 	var issue_date = document.getElementById("issue_date").value;
 	var return_date = document.getElementById("return_date").value;

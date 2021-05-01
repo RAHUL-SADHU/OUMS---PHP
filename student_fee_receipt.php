@@ -1,3 +1,6 @@
+<?php
+include("security.php");
+?>
 <html>
   <head>
     <style>
@@ -62,29 +65,56 @@
       <tr>
         <!--  <td style="vertical-align:center;text-align:right;"><img src="/assets/images/logo.jpg" /></td> -->
         <td  colspan="4" style="text-align:center;vertical-align:center">
-          <h2>NandKuvarBa Mahila Collage<h2>
+          <?php
+          $query = "SELECT * FROM institute ORDER BY institute_id DESC LIMIT 1";
+          $query_run = mysqli_query($connection,$query);
+          if(mysqli_num_rows($query_run)>0){
+          while ($row = mysqli_fetch_assoc($query_run)) {
+          echo "<h2>".$row['name']."<h2>";
+          }
+          }else{
+          echo "<h2>NandKuvarBa Mahila Collage<h2>";
+          }
+          ?>
           <h3>Student Fee Collection Report</h3>
         </td>
       </tr>
     </table>
     <hr>
     <table class="tb_info">
+       <?php
+          $student_id = $_POST["student"];
+          $query = "SELECT * FROM student LEFT JOIN department ON student.department_id = department.id WHERE student.id = '$student_id'";
+          $query_run = mysqli_query($connection,$query);
+          if(mysqli_num_rows($query_run)>0){
+          while ($row = mysqli_fetch_assoc($query_run)) {
+          ?>
       <tr>
         <td><strong>Name Of Student:</strong></td>
-        <td colspan="4">Maya Acharya</td>
+        <td colspan="4"><?php echo $row['first_name']." ".$row['last_name'];?></td>
         <td><strong>Date of birth:</strong></td>
-        <td colspan="4"> March 21,1995</td>
+        <td colspan="4"><?php 
+         $date=date_create($row['bod']);
+        echo date_format($date,"M d, Y");
+        ?></td>
         <td><strong>Id No:</strong></td>
-        <td colspan="4">14588</td>
+        <td colspan="4"><?php echo $row['student_id'];?></td>
       </tr>
       <tr>
         <td><strong>Department:</strong></td>
-        <td colspan="4">BCA</td>
+        <td colspan="4"><?php echo $row['name'];?></td>
         <td><strong>Father's name:</strong></td>
-        <td colspan="4">Bakulchandr</td>
+        <td colspan="4"><?php echo $row['father_name'];?></td>
         <td><strong>Mother's name:</strong></td>
-        <td colspan="4"> Rekhaben</td>
+        <td colspan="4"><?php echo $row['mother_name'];?></td>
       </tr>
+
+        <?php
+            }
+            } else{
+             echo "<p class='text-center font-weight-bold my-5'>No Record Found.</p>";
+            }
+          ?>
     </table>
     <hr>
     <!-- Fee List -->
@@ -100,21 +130,29 @@
               <th>Pay Date</th>
             </tr>
           </thead>
+
+
           <tbody>
+             <?php
+          $student_id = $_POST["student"];
+          $query = "SELECT * FROM fees WHERE student_id = '$student_id'";
+          $query_run = mysqli_query($connection,$query);
+          if(mysqli_num_rows($query_run)>0){
+          while ($row = mysqli_fetch_assoc($query_run)) {
+          ?>
             <tr>
-              <td>02</td>
-              <td>2017.00</td>
-              <td>2017.00</td>
-              <td>0.00</td>
-              <td>March 5,2021</td>
-            </tr>
-            <tr>
-              <td>03</td>
-              <td>2000.00</td>
-              <td>100.00</td>
-              <td>1900.00</td>
-              <td>March 6,2021</td>
-            </tr>
+              <td><?php echo $row['fees_id'];?></td>
+              <td><?php echo $row['payableAmount'];?></td>
+              <td><?php echo $row['paidAmount'];?></td>
+              <td><?php echo $row['dueAmount'];?></td>
+              <td><?php echo $row['payDate'];?></td>
+            </tr>            
+        <?php
+            }
+            } else{
+             echo "<p class='text-center font-weight-bold my-5'>No Record Found.</p>";
+            }
+          ?>
           </tbody>
         </table>
       </div>

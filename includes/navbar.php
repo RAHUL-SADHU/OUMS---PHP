@@ -102,7 +102,7 @@
             </a>
             <div id="collapseFees" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="fees_list.php">Fee List</a>
+                  <!--   <a class="collapse-item" href="fees_list.php">Fee List</a> -->
                     <a class="collapse-item" href="fee_collection.php">Fee Collection</a>
                     <a class="collapse-item" href="fee_receipt.php">Fee Receipt</a>
                 </div>

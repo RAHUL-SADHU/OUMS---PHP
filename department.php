@@ -69,18 +69,7 @@ include("includes/navbar.php");
 				cellspacing="0"
                 data-show-print="true"
 				>
-					<!-- <div class="row">
-						<div class="col-sm-12 col-md-6">
-							<div class="dataTables_length" id="dataTable_length">
-								<label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
-							</div>
-						</div>
-						<div class="col-sm-12 col-md-6">
-							<div id="dataTable_filter" class="dataTables_filter">
-								<label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label>
-							</div>
-						</div>
-					</div> -->
+					
 					<thead>
 						<tr>
 							<th data-field="name">Name</th>
@@ -133,13 +122,9 @@ include("includes/navbar.php");
 		</div>
 	</div>
 
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
-	<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/print/bootstrap-table-print.min.js"></script>
-<!-- 
-	<script>
+
+
+<!-- 	<script>
   var $table = $('#dataTable')
 
   $(function() {
@@ -156,7 +141,7 @@ include("includes/navbar.php");
 				}
 	</script>
 	<?php
-		//include("includes/scripts.php");
+		include("includes/scripts.php");
 		include("includes/footer.php");
 		if(isset($_POST["submit"])){
 		$dName = $_POST["dName"];
