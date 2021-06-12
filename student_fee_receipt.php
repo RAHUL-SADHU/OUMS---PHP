@@ -120,6 +120,15 @@ include("security.php");
     <!-- Fee List -->
     <div class="row">
       <div class="col-md-12">
+         <?php
+          $student_id = $_POST["student"];
+          $query = "SELECT * FROM fees WHERE student_id = '$student_id'";
+          $query_run = mysqli_query($connection,$query);
+           $totalPayable = 0;
+             $totalPaid = 0;
+             $totalDue = 0;
+          if(mysqli_num_rows($query_run)>0){
+            ?>
         <table id="feeList" class="grid">
           <thead>
             <tr>
@@ -134,18 +143,21 @@ include("security.php");
 
           <tbody>
              <?php
-          $student_id = $_POST["student"];
-          $query = "SELECT * FROM fees WHERE student_id = '$student_id'";
-          $query_run = mysqli_query($connection,$query);
-          if(mysqli_num_rows($query_run)>0){
+            
           while ($row = mysqli_fetch_assoc($query_run)) {
+              $totalPayable = $totalPayable + $row['payableAmount'];
+               $totalPaid = $totalPaid + $row['paidAmount'];
+               $totalDue = $totalDue  + $row['dueAmount'];
           ?>
             <tr>
               <td><?php echo $row['fees_id'];?></td>
               <td><?php echo $row['payableAmount'];?></td>
               <td><?php echo $row['paidAmount'];?></td>
               <td><?php echo $row['dueAmount'];?></td>
-              <td><?php echo $row['payDate'];?></td>
+              <td><?php 
+         $date=date_create($row['payDate']);
+        echo date_format($date,"M d, Y");
+        ?></td>
             </tr>            
         <?php
             }
@@ -164,9 +176,9 @@ include("security.php");
           <tbody>
             <tr>
               <td></td>
-              <td>Total Payable: <strong><i class="blue">4017.00</i></strong> tk.</td>
-              <td>Total Paid: <strong><i class="blue">2117.00</i></strong> tk.</td>
-              <td>Total Due: <strong><i class="blue">1900.00</i></strong> tk.</td>
+              <td>Total Payable: <strong><i class="blue"><?php echo $totalPayable ?></i></strong></td>
+              <td>Total Paid: <strong><i class="blue"><?php echo $totalPaid ?></i></strong></td>
+              <td>Total Due: <strong><i class="blue"><?php echo $totalDue ?></i></strong></td>
               <td></td>
               <td>
               </td>
@@ -180,18 +192,14 @@ include("security.php");
     <table style="text-align:left">
       <tr>
         <th >Prepared by</th>
-        <th>Checked & Verified by<br>Date:------- </th>
+        <th>Checked & Verified by<br>Date:_________</th>
         <th>Principal </th>
       </tr>
       <tr>
-        <td >-----------------</td>
-        <td >-------------------------------</td>
-        <td >----------------</td>
+        <td >_________________</td>
+        <td >_______________________________</td>
+        <td >_________________</td>
       </tr>
     </table>
-    <!-- Fee List END-->
-    <div id="footer">
-      <p>Print Date: 06/03/2021</p>
-    </div>
   </body>
 </html>

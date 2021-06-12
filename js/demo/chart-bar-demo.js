@@ -27,18 +27,59 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+ const dataLabels = [];
+ const studentCountData = [];
+
+ function setLabels(item, index, arr) {
+  dataLabels.push(item.name);
+ }
+
+ function setStudentCount(item, index, arr) {
+  studentCountData.push(item.total);
+ }
+
+  $.ajax({
+  type: "POST",
+  url: "get_data.php",
+  data: {action: 'deparment_name_list'},
+  dataType: "html",
+  success: function(result){
+    console.log(result); 
+   var myData = JSON.parse(result);
+   myData.forEach(setLabels);
+   console.log(myData);
+  }
+  });
+
+
+  $.ajax({
+  type: "POST",
+  url: "get_data.php",
+  data: {action: 'student_count_with_department'},
+  dataType: "html",
+  success: function(result){
+  console.log(result); 
+  var myData = JSON.parse(result);
+  myData.forEach(setStudentCount);
+  loadChart();
+  }
+  });
+
+
+
 // Bar Chart Example
-var ctx = document.getElementById("myBarChart");
-var myBarChart = new Chart(ctx, {
+  function loadChart(){
+ var ctx = document.getElementById("myBarChart");
+ var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: dataLabels,
     datasets: [{
       label: "Revenue",
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      data: studentCountData,
     }],
   },
   options: {
@@ -54,7 +95,7 @@ var myBarChart = new Chart(ctx, {
     scales: {
       xAxes: [{
         time: {
-          unit: 'month'
+          unit: 'department'
         },
         gridLines: {
           display: false,
@@ -68,13 +109,13 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
-          maxTicksLimit: 5,
+          max: 25,
+          maxTicksLimit: 8,
           padding: 10,
-          // Include a dollar sign in the ticks
+          /*// Include a dollar sign in the ticks
           callback: function(value, index, values) {
             return '$' + number_format(value);
-          }
+          }*/
         },
         gridLines: {
           color: "rgb(234, 236, 244)",
@@ -108,4 +149,5 @@ var myBarChart = new Chart(ctx, {
       }
     },
   }
-});
+ });
+}

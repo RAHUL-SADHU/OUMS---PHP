@@ -3,9 +3,7 @@ include("security.php");
 include("includes/header.php");
 include("includes/navbar.php");
 ?>
-<!-- Date Picker Lib -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
 <div class="container-fluid">
 	<div class="card shadow mb-4 mt-4">
 		<div class="card-header py-3">
@@ -20,7 +18,7 @@ include("includes/navbar.php");
 					$query_run = mysqli_query($connection,$getDeparment);
 					?>
 					<label class="col-form-label">Department:</label>
-					<select class="form-control" name="department_id">
+					<select class="form-control" name="department" id="department">
 						<?php
 						if(mysqli_num_rows($query_run)>0){
 						while ($row = mysqli_fetch_assoc($query_run)) {
@@ -35,7 +33,7 @@ include("includes/navbar.php");
 				</div>
 				<div class="form-group col-md-6 mx-auto">
 					<label for="Semester" class="col-form-label">Semester:</label>
-					<select class="form-control" name="semester">
+					<select class="form-control" name="semester" id="semester" required>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -50,16 +48,14 @@ include("includes/navbar.php");
 			<div class="form-row">
 				<div class="form-group col-md-6 mx-auto">
 					<label for="exam" class="col-form-label">Exam:</label>
-					<select class="form-control" name="exam">
+					<select class="form-control" name="exam" id="exam">
 						<option>Midterm Exam</option>
 						<option>Final Exam</option>
 					</select>
 				</div>
 				<div class="form-group col-md-6 mx-auto">
 					<label for="subject" class="col-form-label">Subject:</label>
-					<select class="form-control" name="subject">
-						<option>BCA</option>
-						<option>MCA</option>
+					<select class="form-control" name="subject" id="subject">
 					</select>
 				</div>
 			</div>
@@ -68,20 +64,24 @@ include("includes/navbar.php");
 			
 		</div>
 	</div>
-	<script>
-	$(document).ready(function(){
-	var date_input=$('input[name="date"]'); //our date input has the name "date"
-	var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-	var options={
-	format: 'mm/dd/yyyy',
-	container: container,
-	todayHighlight: true,
-	autoclose: true,
-	};
-	date_input.datepicker(options);
-	})
-	</script>
 	<?php
 		include("includes/scripts.php");
 		include("includes/footer.php");
 	?>
+	<script type="text/javascript">
+		function updateSubject(){
+		var department_id = $("#department").val();
+		var semester  = $("#semester").val();
+ 	$.ajax({
+	type: "POST",
+	url: "get_data.php",
+	data: {action: 'subject_dropdown',department_id : department_id,semester :semester},
+	dataType: "html",
+	success: function(data){
+	$("#subject").html(data);
+	}
+	});
+	}
+
+	window.onload=updateSubject;
+	</script>

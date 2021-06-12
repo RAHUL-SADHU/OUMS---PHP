@@ -3,15 +3,16 @@ include("security.php");
 include("includes/header.php");
 include("includes/navbar.php");
 ?>
-<!-- Date Picker Lib -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+ <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+
 <div class="container-fluid">
 	<div class="card shadow mb-4 mt-4">
 		<div class="card-header py-3">
 			<h5 class="m-0 font-weight-bold text-primary">Student Attendence</h5>
 		</div>
 		<div class="card-body">
+			<form action="#" method="POST">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<?php
@@ -19,7 +20,7 @@ include("includes/navbar.php");
 					$query_run = mysqli_query($connection,$getDeparment);
 					?>
 					<label class="col-form-label">Department:</label>
-					<select class="form-control" name="department_id">
+					<select class="form-control" name="department_id" id="department" onchange="updateSubject()" required>
 						<?php
 						if(mysqli_num_rows($query_run)>0){
 						while ($row = mysqli_fetch_assoc($query_run)) {
@@ -34,7 +35,7 @@ include("includes/navbar.php");
 				</div>
 				<div class="form-group col-md-6 mx-auto">
 					<label for="Semester" class="col-form-label">Semester:</label>
-					<select class="form-control" name="semester">
+					<select class="form-control" name="semester" id="semester" onchange="updateSubject()" required>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -49,141 +50,110 @@ include("includes/navbar.php");
 			<div class="form-row">
 				<div class="form-group col-md-6"> <!-- Date input -->
 				<label class="col-form-label" for="date">Date:</label>
-				<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+				<input class="form-control" id="date" name="date"type="date" required/>
 			</div>
 			<div class="form-group col-md-6 mx-auto">
 				<label for="subject" class="col-form-label">Subject:</label>
-				<select class="form-control" name="subject">
-					<option>BCA</option>
-					<option>MCA</option>
+				<select class="form-control" name="subject" id="subject" required>	
 				</select>
 			</div>
 		</div>
 		<button type="submit" class="btn btn-primary" name="submit">Go</button>
+		</form>
 		
 		<div class="table-responsive mt-4">
-			<?php
-			$getDeparment = "SELECT * FROM department";
-			$query_run = mysqli_query($connection,$getDeparment);
-			?>
-			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-				<div class="row">
-					<!-- <div class="col-sm-12 col-md-6">
-							<div class="dataTables_length" id="dataTable_length">
-									<label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
-							</div>
-					</div> -->
-					<!-- 	<div class="col-sm-12 col-md-6">
-							<div id="dataTable_filter" class="dataTables_filter">
-									<label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label>
-							</div>
-					</div> -->
-				</div>
+			
+			<table class="table" id="table">
 				<thead>
 					<tr>
-						<th>Student Id</th>
-						<th>Name</th>
-						<th>Present</th>
-						<th>Edit</th>
+						<th data-field="student_id">Student Id</th>
+						<th data-field="name">Name</th>
+						<th data-field="isPresent"  data-formatter="inputFormatter"
+        data-events="inputEvents" >Present</th>
+						<!-- <th>Edit</th> -->
 					</tr>
 				</thead>
-				<?php
-					if(mysqli_num_rows($query_run)>0){
-					while ($row = mysqli_fetch_assoc($query_run)) {
-				?>
-				
-				
-				<tbody>
-					<tr>
-						<th>12201</th>
-						<th>Mario Speedwagon</th>
-						<th>Yes</th>
-						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
-					</tr>
-					<tr>
-						<th>12202</th>
-						<th>Petey Cruiser</th>
-						<th>Yes</th>
-						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
-					</tr>
-					<tr>
-						<th>12203</th>
-						<th>Anna Sthesia</th>
-						<th>Yes</th>
-						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
-					</tr>
-					<tr>
-						<th>12204</th>
-						<th>Paul Molive</th>
-						<th>Yes</th>
-						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
-					</tr>
-					<tr>
-						<th>12205</th>
-						<th>Anna Mull</th>
-						<th>Yes</th>
-						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
-					</tr>
-					<tr>
-						<th>12206</th>
-						<th>Gail Forcewind</th>
-						<th>Yes</th>
-						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
-					</tr>
-					<tr>
-						<th>12208</th>
-						<th>Paige Turner</th>
-						<th>Yes</th>
-						<th><button type="submit" name="edit_btn" class="btn btn-success">EDIT</button></th>
-					</tr>
-					
-					<!-- 	<tr>
-						<td><?php echo $row['name']; ?></td>
-						<td><?php echo $row['code']; ?></td>
-						<td><?php echo $row['year']; ?></td>
-						<td><?php echo $row['description']; ?></td>
-						<td>
-							<form action="edit_department.php" method="POST">
-								<input type="hidden" name="edit_id" value="<?php echo $row['id']?>">
-								<button type="submit" name="edit_btn" class="btn btn-success">EDIT</button>
-							</form>
-							
-						</td>
-						<td>
-							<form action="#" method="POST">
-								<input type="hidden" name="delete_id" value="<?php echo $row['id']?>">
-								<button type="submit" class="btn btn-danger" name="delete">DELETE</button>
-							</form>
-						</td>
-					</tr>
-					-->
-					
-					
-				</tbody>
-				<?php
-					}
-					} else{
-					echo "<p class='text-center font-weight-bold my-5'>No Record Found.</p>";
-					}
-				?>
 			</table>
 		</div>
 	</div>
 </div>
-<script>
-$(document).ready(function(){
-var date_input=$('input[name="date"]'); //our date input has the name "date"
-var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-var options={
-format: 'mm/dd/yyyy',
-container: container,
-todayHighlight: true,
-autoclose: true,
-};
-date_input.datepicker(options);
-})
-</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+
+
+
+
+
 <?php
-	include("includes/scripts.php");
+//	include("includes/scripts.php");
 	include("includes/footer.php");
 ?>
+
+<script type="text/javascript">
+
+	var $table = $('#table');	
+	
+	function updateSubject(){
+	var department_id = $("#department").val();
+	var semester  = $("#semester").val();
+	$.ajax({
+	type: "POST",
+	url: "get_data.php",
+	data: {action: 'subject_dropdown',department_id : department_id,semester :semester},
+	dataType: "html",
+	success: function(data){
+	$("#subject").html(data);
+	}
+	});
+	}
+
+	 function inputFormatter(value) {
+     var checked = ''
+    if(value == 1){
+      checked = 'checked'
+    }
+    return '<input type="checkbox" ' + checked + ' disabled/>'
+  }
+
+
+ $(function() {
+	var data = [	]
+	$table.bootstrapTable({data: data})
+	})
+
+ $('form').on('submit', function(event) {
+	event.preventDefault();
+	   loadTable();
+	});
+
+
+	function loadTable() {
+	var department_id = document.getElementById("department").value;
+	var semester = document.getElementById("semester").value;
+	var date = document.getElementById("date").value;
+	var subject_id = document.getElementById("subject").value;
+
+	console.log(department_id);
+	 $.ajax({
+	type: "POST",
+	url: "table_data.php",
+	data: {action: 'get_attendance_list_table',
+	department_id : department_id,
+	semester : semester,
+    date : date,
+    subject_id : subject_id },
+	dataType: "html",
+	success: function(result){
+	 var myData = JSON.parse(result);
+	 console.log(result);
+	 $table.bootstrapTable('load',myData);
+	
+	}
+	});
+}
+
+window.onload=updateSubject;
+</script>
