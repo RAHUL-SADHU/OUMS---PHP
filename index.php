@@ -30,7 +30,16 @@ include("includes/navbar.php");
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                            <?php echo $_SESSION["userName"] ?>
+                            <?php
+                            $id = $_SESSION["userId"];
+                            $query = "SELECT * FROM admin WHERE id = $id LIMIT 1";
+                            $query_run = mysqli_query($connection,$query);
+                            if(mysqli_num_rows($query_run)>0){
+                             while ($row = mysqli_fetch_assoc($query_run)) {
+                                echo $row["first_name"]." ".$row["last_name"];
+                             }}
+                            ?>
+                            <!-- <?php echo $_SESSION["userName"] ?> -->
                         </span>
                         <img class="img-profile rounded-circle"
                         src="img/undraw_profile.svg">
@@ -38,7 +47,7 @@ include("includes/navbar.php");
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                         aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="profile.php">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profile
                         </a>
@@ -138,33 +147,30 @@ include("includes/navbar.php");
                         </div>
                     </div>
                 </div>
-              
-             <!-- Bar Chart -->
-                            <div class="card shadow mb-4 col">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Student Chart</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-bar">
-                                        <canvas id="myBarChart"></canvas>
-                                    </div>
-                                    <hr>
-                                </div>
-                            </div>
-
-            
+                
+                <!-- Bar Chart -->
+                <div class="card shadow mb-4 col">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Student Chart</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-bar">
+                            <canvas id="myBarChart"></canvas>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- /.container-fluid -->
         </div>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- End of Main Content -->
- 
-   
-
-    <?php
-    include("includes/scripts.php");
-    include("includes/footer.php");
-    ?>
-
-     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="js/demo/chart-bar-demo.js"></script>
+        <!-- End of Main Content -->
+        
+        
+        <?php
+        include("includes/scripts.php");
+        include("includes/footer.php");
+        ?>
+        <!-- Page level plugins -->
+        <script src="vendor/chart.js/Chart.min.js"></script>
+        <script src="js/demo/chart-bar-demo.js"></script>

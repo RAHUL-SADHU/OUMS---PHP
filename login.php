@@ -101,6 +101,7 @@
 		while ($row = mysqli_fetch_assoc($query_run)) {
 		$_SESSION["userName"] = $row['first_name']." ".$row['last_name'];
 		$_SESSION["role"] = $row["role"];
+		$_SESSION["userId"] = $row["id"];
 		header("Location:index.php");
 	     }
 

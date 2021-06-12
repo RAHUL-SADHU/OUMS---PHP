@@ -13,13 +13,13 @@ include("includes/navbar.php");
 	
 	<div class="card shadow mb-4 mt-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Edit User</h6>
+			<h6 class="m-0 font-weight-bold text-primary">Edit Profile</h6>
 		</div>
 		<div class="card-body">
 			<?php
-			if(isset($_POST['edit_btn'])){
 			
-			$id =  $_POST['edit_id'];
+			
+			$id =  $_SESSION["userId"];
 			$query = "SELECT * FROM admin WHERE id='$id'";
 			$query_run = mysqli_query($connection,$query);
 			foreach($query_run as $row){
@@ -55,11 +55,10 @@ include("includes/navbar.php");
 					<input type="password" name="password" class="form-control form-control-user"
 					id="password" value="<?php echo $row['password']?>"required>
 				</div>
-				<a href="admin.php" class="btn btn-danger mt-3">Cancel</a>
+				<a href="index.php" class="btn btn-danger mt-3">Cancel</a>
 				<button type="submit" class="btn btn-primary ml-3 mt-3" name="update">Update</button>
 			</form>
 			<?php
-			}
 			}
 			?>
 			
@@ -80,7 +79,7 @@ if(isset($_POST["update"])){
 	$query = "UPDATE admin SET first_name='$fName',last_name='$lName',role='$role',password ='$password',email = '$email' WHERE id = '$id'";
 	$query_run = mysqli_query($connection,$query);
 	if($query_run){
-echo " <script> location.replace('admin.php'); </script>";
+echo " <script> location.replace('index.php'); </script>";
 }else{
 echo "Data note update";
 }
