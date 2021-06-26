@@ -126,6 +126,22 @@
             </div>
         </li>
 
+         <!-- Nav Item - Report -->
+        <li class="nav-item ">
+            <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseReport"aria-expanded="true" aria-controls="collapseReport">
+                <i class="fas fa-file-invoice"></i>
+                <span>Reports</span>
+            </a>
+            <div id="collapseReport" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <!--   <a class="collapse-item" href="fees_list.php">Students List</a> -->
+                    <a class="collapse-item" href="report_student_list.php">Student List</a>
+                    <a class="collapse-item" href="attendance_list.php">Attendence</a>
+                </div>
+            </div>
+        </li>
+
+
         <!-- Nav Item - Users -->
         <li class="nav-item">
             <a class="nav-link" href="admin.php">
@@ -134,7 +150,7 @@
             </a>
         </li>
 
-         <!-- Nav Item - Users -->
+         <!-- Nav Item - institute -->
         <li class="nav-item">
             <a class="nav-link" href="institute.php">
                <i class="fas fa-university"></i>

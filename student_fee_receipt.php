@@ -17,6 +17,11 @@ include("security.php");
     height: 297mm;
     }
     }
+    @media print {
+    #printPageButton {
+    display: none;
+    }
+    }
     table {
     width: 100%;
     }
@@ -58,6 +63,12 @@ include("security.php");
     bottom:0;
     left:0;
     }
+    .btnDiv {
+    width: 100%;
+    left: 0;
+    bottom: 250px;
+    position: absolute;
+    }
     </style>
   </head>
   <body>
@@ -82,20 +93,20 @@ include("security.php");
     </table>
     <hr>
     <table class="tb_info">
-       <?php
-          $student_id = $_POST["student"];
-          $query = "SELECT * FROM student LEFT JOIN department ON student.department_id = department.id WHERE student.id = '$student_id'";
-          $query_run = mysqli_query($connection,$query);
-          if(mysqli_num_rows($query_run)>0){
-          while ($row = mysqli_fetch_assoc($query_run)) {
-          ?>
+      <?php
+      $student_id = $_POST["student"];
+      $query = "SELECT * FROM student LEFT JOIN department ON student.department_id = department.id WHERE student.id = '$student_id'";
+      $query_run = mysqli_query($connection,$query);
+      if(mysqli_num_rows($query_run)>0){
+      while ($row = mysqli_fetch_assoc($query_run)) {
+      ?>
       <tr>
         <td><strong>Name Of Student:</strong></td>
         <td colspan="4"><?php echo $row['first_name']." ".$row['last_name'];?></td>
         <td><strong>Date of birth:</strong></td>
-        <td colspan="4"><?php 
-         $date=date_create($row['bod']);
-        echo date_format($date,"M d, Y");
+        <td colspan="4"><?php
+          $date=date_create($row['bod']);
+          echo date_format($date,"M d, Y");
         ?></td>
         <td><strong>Id No:</strong></td>
         <td colspan="4"><?php echo $row['student_id'];?></td>
@@ -108,27 +119,26 @@ include("security.php");
         <td><strong>Mother's name:</strong></td>
         <td colspan="4"><?php echo $row['mother_name'];?></td>
       </tr>
-
-        <?php
-            }
-            } else{
-             echo "<p class='text-center font-weight-bold my-5'>No Record Found.</p>";
-            }
-          ?>
+      <?php
+      }
+      } else{
+      echo "<p class='text-center font-weight-bold my-5'>No Record Found.</p>";
+      }
+      ?>
     </table>
     <hr>
     <!-- Fee List -->
     <div class="row">
       <div class="col-md-12">
-         <?php
-          $student_id = $_POST["student"];
-          $query = "SELECT * FROM fees WHERE student_id = '$student_id'";
-          $query_run = mysqli_query($connection,$query);
-           $totalPayable = 0;
-             $totalPaid = 0;
-             $totalDue = 0;
-          if(mysqli_num_rows($query_run)>0){
-            ?>
+        <?php
+        $student_id = $_POST["student"];
+        $query = "SELECT * FROM fees WHERE student_id = '$student_id'";
+        $query_run = mysqli_query($connection,$query);
+        $totalPayable = 0;
+        $totalPaid = 0;
+        $totalDue = 0;
+        if(mysqli_num_rows($query_run)>0){
+        ?>
         <table id="feeList" class="grid">
           <thead>
             <tr>
@@ -139,32 +149,30 @@ include("security.php");
               <th>Pay Date</th>
             </tr>
           </thead>
-
-
           <tbody>
-             <?php
+            <?php
             
-          while ($row = mysqli_fetch_assoc($query_run)) {
-              $totalPayable = $totalPayable + $row['payableAmount'];
-               $totalPaid = $totalPaid + $row['paidAmount'];
-               $totalDue = $totalDue  + $row['dueAmount'];
-          ?>
+            while ($row = mysqli_fetch_assoc($query_run)) {
+            $totalPayable = $totalPayable + $row['payableAmount'];
+            $totalPaid = $totalPaid + $row['paidAmount'];
+            $totalDue = $totalDue  + $row['dueAmount'];
+            ?>
             <tr>
               <td><?php echo $row['fees_id'];?></td>
               <td><?php echo $row['payableAmount'];?></td>
               <td><?php echo $row['paidAmount'];?></td>
               <td><?php echo $row['dueAmount'];?></td>
-              <td><?php 
-         $date=date_create($row['payDate']);
-        echo date_format($date,"M d, Y");
-        ?></td>
-            </tr>            
-        <?php
+              <td><?php
+                $date=date_create($row['payDate']);
+                echo date_format($date,"M d, Y");
+              ?></td>
+            </tr>
+            <?php
             }
             } else{
-             echo "<p class='text-center font-weight-bold my-5'>No Record Found.</p>";
+            echo "<p class='text-center font-weight-bold my-5'>No Record Found.</p>";
             }
-          ?>
+            ?>
           </tbody>
         </table>
       </div>
@@ -201,5 +209,8 @@ include("security.php");
         <td >_________________</td>
       </tr>
     </table>
+    <div class="text-center btnDiv">
+      <button id="printPageButton" onClick="window.print()">Print</button>
+    </div>
   </body>
 </html>

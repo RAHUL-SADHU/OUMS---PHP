@@ -71,5 +71,20 @@ if($action == "student_count_with_department"){
 }
 
 
+// get student list use in report_student_list.php
+	if($action == 'get_student_list_table'){
+							$department_id = $_POST["department_id"];
+							$getStudent = "SELECT s.student_id,RTRIM(LTRIM(CONCAT(COALESCE(first_name,''),' ', COALESCE(last_name,'')))) AS name, d.name AS department_name, s.semester,s.phone,s.present_address FROM student AS s INNER JOIN department AS d ON s.department_id = d.id WHERE s.department_id = '$department_id'";
+							$query_run = mysqli_query($connection,$getStudent);
+							$json = array();
+						if(mysqli_num_rows($query_run)>0){
+		while ($row = mysqli_fetch_assoc($query_run)) {
+								$json[] = $row;
+			}
+}
+			echo json_encode($json);
+			
+	}
+
 
 ?>

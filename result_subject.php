@@ -29,6 +29,17 @@ include("security.php");
         transform: rotate(-90.0deg);
         font-size: small;
         }
+        .btnDiv {
+        width: 100%;
+        left: 700px;
+        bottom: 250px;
+        position: absolute;
+        }
+        @media print {
+        #printPageButton {
+        display: none;
+        }
+        }
         </style>
     </head>
     <body>
@@ -102,34 +113,34 @@ include("security.php");
                 <td style="text-align:center">Lab/Practical</td>
                 <td style="text-align:center">Total</td>
             </tr>
-          
-                <?php
-                $query = "SELECT * FROM exam AS e INNER JOIN student AS s ON e.student_id = s.id WHERE e.department_id = '$department_id' AND e.semester = '$semester' AND e.exam ='$exam' AND e.subject_id = '$subject_id'";
-                $query_run = mysqli_query($connection,$query);
-                if(mysqli_num_rows($query_run)>0){
-                while ($row = mysqli_fetch_assoc($query_run)) {
-                 $written = $row['written'];
-                 $presentation = $row['presentation'];
-                 $practical = $row['practical'];
-                 $total = $written + $presentation + $practical;
-                 $grade = "F";
-                 if($total>=90 AND $total<=100){
-                   $grade = "A+";
-                 }else if($total>=80 AND $total<=89){
-                   $grade = "A";
-                 }else if($total>=70 AND $total<=79){
-                   $grade = "B+";
-                 }else if($total>=60 AND $total<=69){
-                   $grade = "B";
-                 }else if($total>=55 AND $total<=59){
-                   $grade = "C+";
-                 }else if($total>=45 AND $total<=54){
-                   $grade = "C";
-                 }else if($total>=40 AND $total<=44){
-                   $grade = "D";
-                 } 
-                 ?>
-                <tr>
+            
+            <?php
+            $query = "SELECT * FROM exam AS e INNER JOIN student AS s ON e.student_id = s.id WHERE e.department_id = '$department_id' AND e.semester = '$semester' AND e.exam ='$exam' AND e.subject_id = '$subject_id'";
+            $query_run = mysqli_query($connection,$query);
+            if(mysqli_num_rows($query_run)>0){
+            while ($row = mysqli_fetch_assoc($query_run)) {
+            $written = $row['written'];
+            $presentation = $row['presentation'];
+            $practical = $row['practical'];
+            $total = $written + $presentation + $practical;
+            $grade = "F";
+            if($total>=90 AND $total<=100){
+            $grade = "A+";
+            }else if($total>=80 AND $total<=89){
+            $grade = "A";
+            }else if($total>=70 AND $total<=79){
+            $grade = "B+";
+            }else if($total>=60 AND $total<=69){
+            $grade = "B";
+            }else if($total>=55 AND $total<=59){
+            $grade = "C+";
+            }else if($total>=45 AND $total<=54){
+            $grade = "C";
+            }else if($total>=40 AND $total<=44){
+            $grade = "D";
+            }
+            ?>
+            <tr>
                 <td colspan="2" style="text-align:center"><?php echo $row['student_id'] ?></td>
                 <td colspan="2" style="text-align:center" ><?php echo $row['first_name']." ".$row['last_name']?></td>
                 <td style="text-align:center"><?php echo $written ?></td>
@@ -137,12 +148,15 @@ include("security.php");
                 <td style="text-align:center"><?php echo $practical ?></td>
                 <td style="text-align:center"><?php echo $total ?></td>
                 <td style="text-align:center"><?php echo $grade ?></td>
-                 </tr>
-                <?php
-                 }
-                }?>
-           
+            </tr>
+            <?php
+            }
+            }?>
+            
             
         </table>
+        <div class="text-center btnDiv">
+            <button id="printPageButton" onClick="window.print()">Print</button>
+        </div>
     </body>
 </html>
