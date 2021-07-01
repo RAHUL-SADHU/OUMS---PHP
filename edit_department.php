@@ -37,8 +37,8 @@ include("includes/navbar.php");
 					<input type="number" class="form-control" id="code" min="1" name = "dCode" value="<?php echo $row['code']?>"required>
 				</div>
 				<div class="form-group">
-					<label for="years" class="col-form-label">Years:</label>
-					<input type="number" class="form-control" id="years" name= "dYear"
+					<label for="years" class="col-form-label">Year:</label>
+					<input type="text" class="form-control" id="years" name= "dYear" pattern="^19[5-9]\d|20[0-4]\d|2050$" title="Please enter your valid year"
 					value="<?php echo $row['year']?>"
 					required>
 				</div>

@@ -32,7 +32,7 @@ include("security.php");
         .btnDiv {
         width: 100%;
         left: 700px;
-        bottom: 250px;
+        bottom: 50px;
         position: absolute;
         }
         @media print {

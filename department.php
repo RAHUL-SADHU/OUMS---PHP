@@ -3,9 +3,7 @@ include("security.php");
 include("includes/header.php");
 include("includes/navbar.php");
 ?>
-
 <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
-
 <!-- Add Department Model -->
 <div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -27,8 +25,8 @@ include("includes/navbar.php");
 						<input type="number" class="form-control" id="code" min="1" name = "dCode"required>
 					</div>
 					<div class="form-group">
-						<label for="years" class="col-form-label">Years:</label>
-						<input type="number" class="form-control" id="years" name= "dYear" required>
+						<label for="years" class="col-form-label">Year:</label>
+						<input type="text" class="form-control" id="years" name= "dYear" pattern="^19[5-9]\d|20[0-4]\d|2050$" title="Please enter your valid year" required>
 					</div>
 					<div class="form-group">
 						<label for="description" class="col-form-label">Description:</label>
@@ -62,13 +60,13 @@ include("includes/navbar.php");
 				$getDeparment = "SELECT * FROM department";
 				$query_run = mysqli_query($connection,$getDeparment);
 				?>
-				<table 
-				class="table table-bordered" 
-				id="dataTable" 
-				width="100%" 
-				cellspacing="0"
-                data-show-print="true"
-				>
+				<table
+					class="table table-bordered"
+					id="dataTable"
+					width="100%"
+					cellspacing="0"
+					data-show-print="true"
+					>
 					
 					<thead>
 						<tr>
@@ -114,27 +112,22 @@ include("includes/navbar.php");
 					<?php
 						}
 						} else{
-						 echo "<p class='text-center font-weight-bold my-5'>No Record Found.</p>";
+						echo "<p class='text-center font-weight-bold my-5'>No Record Found.</p>";
 						}
 					?>
 				</table>
 			</div>
 		</div>
 	</div>
-
-
-
-<!-- 	<script>
-  var $table = $('#dataTable')
-
-  $(function() {
-    var data = [
-     
-    ]
-    $table.bootstrapTable({data: data})
-  })
-</script> -->
-
+	<!-- 	<script>
+	var $table = $('#dataTable')
+	$(function() {
+	var data = [
+	
+	]
+	$table.bootstrapTable({data: data})
+	})
+	</script> -->
 	<script>
 				function hideModel(){
 				$('#addDepartment').modal('hide')
@@ -166,4 +159,3 @@ include("includes/navbar.php");
 	}
 	}
 	?>
-	

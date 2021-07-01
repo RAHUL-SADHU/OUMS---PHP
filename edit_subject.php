@@ -62,7 +62,7 @@ include("includes/navbar.php");
 					<label for="Semester" class="col-form-label">Semester:</label>
 					<select class="form-control" name="semester">
 						<?php
-						for ($x = 0; $x <= 8; $x++) {
+						for ($x = 1; $x <= 8; $x++) {
 							if($row['semester'] == $x){
 						echo "<option selected = selected>".$x."</option>";
 							}else{

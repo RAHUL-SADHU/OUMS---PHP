@@ -66,7 +66,7 @@ include("security.php");
     .btnDiv {
     width: 100%;
     left: 0;
-    bottom: 250px;
+    bottom: 50px;
     position: absolute;
     }
     </style>

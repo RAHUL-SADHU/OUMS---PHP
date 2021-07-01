@@ -18,7 +18,7 @@ include("includes/navbar.php");
 					$query_run = mysqli_query($connection,$getDeparment);
 					?>
 					<label class="col-form-label">Department:</label>
-					<select class="form-control" name="department" id="department">
+					<select class="form-control" name="department" id="department" onchange="updateSubject()">
 						<?php
 						if(mysqli_num_rows($query_run)>0){
 						while ($row = mysqli_fetch_assoc($query_run)) {
@@ -33,7 +33,7 @@ include("includes/navbar.php");
 				</div>
 				<div class="form-group col-md-6 mx-auto">
 					<label for="Semester" class="col-form-label">Semester:</label>
-					<select class="form-control" name="semester" id="semester" required>
+					<select class="form-control" name="semester" id="semester" onchange="updateSubject()" required>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -48,14 +48,14 @@ include("includes/navbar.php");
 			<div class="form-row">
 				<div class="form-group col-md-6 mx-auto">
 					<label for="exam" class="col-form-label">Exam:</label>
-					<select class="form-control" name="exam" id="exam">
+					<select class="form-control" name="exam" id="exam" >
 						<option>Midterm Exam</option>
 						<option>Final Exam</option>
 					</select>
 				</div>
 				<div class="form-group col-md-6 mx-auto">
 					<label for="subject" class="col-form-label">Subject:</label>
-					<select class="form-control" name="subject" id="subject">
+					<select class="form-control" name="subject" id="subject" required>
 					</select>
 				</div>
 			</div>

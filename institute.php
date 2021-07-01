@@ -21,7 +21,7 @@ include("includes/navbar.php");
 				</div>
 				<div class="form-group col-md-6 mx-auto">
 					<label for="establish" class="col-form-label">Establish:</label>
-					<input type="number" class="form-control" min="1900" max="2099" step="1" name="establish" value="<?php echo $row['establish']?>" required/>
+					<input type="text" class="form-control" min="1900" max="2099" step="1" name="establish"  pattern="^19[5-9]\d|20[0-4]\d|2050$" title="Please enter your valid year" value="<?php echo $row['establish']?>" required/>
 				</div>
 				<div class="form-group col-md-6 mx-auto">
 					<label for="web" class="col-form-label">WebSite:</label>
